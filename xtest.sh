@@ -43,4 +43,4 @@ cd $_cwd
 mv "$3.zip" ..
 
 #remove dir
-#rm -r "$_cwd"
+rm -r "$_cwd"
