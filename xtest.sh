@@ -41,6 +41,3 @@ cd $_cwd
 
 #move zip top dir
 mv "$3.zip" ..
-
-#remove dir
-rm -r "$_cwd"
