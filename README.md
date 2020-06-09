@@ -12,10 +12,10 @@ SAMPLE ./xtest.sh 530640 34 81391
   https://i.nhentai.net/galleries/XXXXXX/Y.jpg the number XXXXXX is the gallery id
 
 # batch processing
-create a file called "continuefile"
-no file extension
-structure it like this
-gallary_id page_count nhentai_id ;
-sample (random numbers here)
-9032423 90 23444 ;
-use the file called massruner.sh to start the process
+create a file called "continuefile"  
+no file extension  
+structure it like this  
+gallary_id page_count nhentai_id ;  
+sample (random numbers here)  
+9032423 90 23444 ;  
+use the file called massruner.sh to start the process  
