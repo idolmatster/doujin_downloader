@@ -1,8 +1,15 @@
 # doujin_downloader
-linux/posix complient download script for doujins
+gnu/linux compatible download script for doujins
 
-#open like this
-scriptname gallery_id number_of_pages nh_id
+# requirements
+if you use a debian based distro that uses the apt packagemanager you can use the install.sh  
+otherwise you will need to install the dependencies by yourself
+- wget
+- zip 
+- libpodofo-utils
+
+# open like this
+scriptname gallery_id number_of_pages nh_id  
 SAMPLE ./xtest.sh 530640 34 81391
 
 # how to get the IDs
