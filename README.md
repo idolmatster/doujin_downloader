@@ -7,6 +7,7 @@ otherwise you will need to install the dependencies by yourself
 - wget
 - zip 
 - libpodofo-utils
+- imagemagick and imagemagick-doc for good measure
 
 # open like this
 scriptname gallery_id number_of_pages nh_id  
