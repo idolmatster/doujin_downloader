@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 #open like this
 #scriptname gallery_id number_of_pages nh_id
@@ -7,6 +7,9 @@
 #create "sandbox" dir
 mkdir $3
 cd $3
+
+# local var $3
+name="$3"
 
 #DL
 for I in `seq 1 $2`
@@ -22,8 +25,15 @@ done
 ls | awk '/^([0-9]+)\.jpg$/ { printf("%s %05d.jpg\n", $0, $1) }' | xargs -n2 mv
 ls | awk '/^([0-9]+)\.png$/ { printf("%s %05d.png\n", $0, $1) }' | xargs -n2 mv
 
+#convert pictures
+convert(){
+    mogrify -format jpg *.*
+    podofoimg2pdf "$name.pdf" -useimgsize *.jpg
+    rm *.png
+}
+
 #PDFer
-podofoimg2pdf "$3.pdf" -useimgsize *.*
+podofoimg2pdf "$3.pdf" -useimgsize *.* || convert
 
 #create file to remark nid
 echo "http://nhentai.net/g/$3/" > "$3.no"
@@ -41,3 +51,4 @@ cd $_cwd
 
 #move zip top dir
 mv "$3.zip" ..
+
