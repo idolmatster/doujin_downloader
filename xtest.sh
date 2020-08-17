@@ -37,6 +37,7 @@ podofoimg2pdf "$3.pdf" -useimgsize *.* || convert
 
 #create file to remark nid
 echo "http://nhentai.net/g/$3/" > "$3.no"
+curl -s "https://nhentai.net/api/gallery/$3" | jq '.title.pretty' >> "$3.no" || echo "please install jq"
 
 #zip it
 zip "$3.zip" *
