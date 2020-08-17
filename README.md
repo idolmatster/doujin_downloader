@@ -1,5 +1,6 @@
 # doujin_downloader
-gnu/linux compatible download script for doujins
+debain compatible donloader for nhentai doujins.
+This also creates a pdf from the pictures for easier reading.
 
 # requirements
 if you use a debian based distro that uses the apt packagemanager you can use the install.sh  
@@ -8,6 +9,8 @@ otherwise you will need to install the dependencies by yourself
 - zip 
 - libpodofo-utils
 - imagemagick and imagemagick-doc for good measure
+- curl
+- jq
 
 # open like this
 scriptname gallery_id number_of_pages nh_id  
