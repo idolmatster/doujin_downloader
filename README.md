@@ -12,23 +12,17 @@ otherwise you will need to install the dependencies by yourself
 - curl
 - jq
 
-# open like this
-scriptname gallery_id number_of_pages nh_id  
-SAMPLE ./xtest.sh 530640 34 81391
-
-# how to get the IDs
-1. nh_id = the number after /g/ in the link  
-  https://nhentai.net/g/ZZZZZZ/1/ the ZZZZZZ number is your nh id
-2. gallery_id = open a picture in the doujin and you will see a link like this  
-  https://i.nhentai.net/galleries/XXXXXX/Y.jpg the number XXXXXX is the gallery id
+# open like this (starting version 2.0)
+scriptname nh_id  
+SAMPLE ./xtest.sh 81391
 
 # batch processing
 create a file called "continuefile"  
-no file extension  
+no file extension for this
 structure it like this  
-gallary_id page_count nhentai_id ;  
-sample (random numbers here)  
-9032423 90 23444 ;  
+nhentai_id ;  
+sample (with random numbers here)  
+23444 ;  
 use the file called massruner.sh to start the process  
 
 # branches
