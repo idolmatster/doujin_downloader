@@ -30,3 +30,11 @@ gallary_id page_count nhentai_id ;
 sample (random numbers here)  
 9032423 90 23444 ;  
 use the file called massruner.sh to start the process  
+
+# branches
+
+## main / master
+up to date with current development
+
+## less_bloat
+contains a version with minimum bloat ontop
