@@ -2,6 +2,8 @@
 debain compatible donloader for nhentai doujins.
 This also creates a pdf from the pictures for easier reading.
 
+[Join the discord](https://discord.gg/rkCZneA)
+
 # requirements
 if you use a debian based distro that uses the apt packagemanager you can use the install.sh  
 otherwise you will need to install the dependencies by yourself
