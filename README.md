@@ -9,7 +9,6 @@ otherwise you will need to install the dependencies by yourself
 - zip 
 - libpodofo-utils
 - imagemagick and imagemagick-doc for good measure
-- curl
 - jq
 
 # open like this (starting version 2.0)
