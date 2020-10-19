@@ -10,11 +10,6 @@ exit_exists(){
     exit 0
 }
 
-dotcom(){
-    
-
-    echo ""
-}
 
 id=$1
 [ -f "${id}.zip" ] && exit_exists
