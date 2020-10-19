@@ -5,12 +5,21 @@ exit_here(){
     exit 0
 }
 
+exit_exists(){
+    echo "you already have this in your collection"
+    exit 0
+}
+
+id=$1
+
+[ -f "${id}.zip" ] && exit_exists
+
 #gather doujin info
 doujin=$(wget -qO- "https://nhentai.net/api/gallery/$1")
 media_id=$(echo $doujin | jq -r '.media_id' || echo "please install jq")
 [ "${media_id}" = "null" ] && exit_here
 page_count=$(echo $doujin | jq '.images.pages | length ')
-id=$1
+
 name=$(echo $doujin | jq -r '.title.pretty')
 
 #create "doujin folder" dir
