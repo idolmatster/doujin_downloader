@@ -10,32 +10,71 @@ exit_exists(){
     exit 0
 }
 
-id=$1
+dotcom(){
+    
 
+    echo ""
+}
+
+id=$1
 [ -f "${id}.zip" ] && exit_exists
 
-#gather doujin info
-doujin=$(wget -qO- "https://nhentai.net/api/gallery/$1")
-media_id=$(echo $doujin | jq -r '.media_id' || echo "please install jq")
-[ "${media_id}" = "null" ] && exit_here
-page_count=$(echo $doujin | jq '.images.pages | length ')
+if echo "$id" | grep -qE '^[0-9]+$'; then
+    # when is a number
+    # than it's a dot net request
 
-name=$(echo $doujin | jq -r '.title.pretty')
+    #gather doujin info
+    doujin=$(wget -qO- "https://nhentai.net/api/gallery/$id")
+    media_id=$(echo $doujin | jq -r '.media_id' || echo "please install jq")
+    [ "${media_id}" = "null" ] && exit_here
+    page_count=$(echo $doujin | jq '.images.pages | length ')
 
-#create "doujin folder" dir
-mkdir $id
-cd $id
+    name=$(echo $doujin | jq -r '.title.pretty')
 
-echo "downloading ${id}"
+    #create "doujin folder" dir
+    mkdir $id
+    cd $id
 
-#DL
-for I in `seq 1 $page_count`
-do
-    url="https://i.nhentai.net/galleries/$media_id/$I.jpg"
-    alturl="https://i.nhentai.net/galleries/$media_id/$I.png"
-    wget -q ${url} || wget -q ${alturl}
-    printf "."
-done
+    echo "downloading ${id}"
+
+    #DL
+    for I in `seq 1 $page_count`
+    do
+        url="https://i.nhentai.net/galleries/$media_id/$I.jpg"
+        alturl="https://i.nhentai.net/galleries/$media_id/$I.png"
+        wget -q ${url} || wget -q ${alturl}
+        printf "."
+    done
+
+else
+    # when it's nan
+    # than it's dot com
+    
+    #gather doujin info
+    doujin=$(wget -qO- "https://nhentai.com/api/comics/${id}?nsfw=false")
+    media_id=$(echo $doujin | jq -r '.id' || echo "please install jq")
+    echo $media_id
+    [ "${media_id}" = "null" ] && exit_here
+    page_count=$(echo $doujin | jq '.pages')
+
+    name=$(echo $doujin | jq -r '.title')
+
+    #create "doujin folder" dir
+    mkdir $id
+    cd $id
+
+    echo "downloading ${id}"
+
+    #DL
+    for I in `seq 1 $page_count`
+    do
+        url="https://cdn.nhentai.com/assets/images/$media_id/$I.png"
+        alturl="https://cdn.nhentai.com/assets/images/$media_id/$I.jpg"
+        wget -q ${url} || wget -q ${alturl}
+        printf "."
+    done
+
+fi
 
 echo ""
 
