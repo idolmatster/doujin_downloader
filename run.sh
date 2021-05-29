@@ -79,28 +79,24 @@ ls | awk '/^([0-9]+)\.png$/ { printf("%s %05d.png\n", $0, $1) }' | xargs -n2 mv
 
 #convert pictures
 convert(){
+    echo "error converting all images to jpg to fix"
     mogrify -format jpg *.*
-    podofoimg2pdf "$id.pdf" -useimgsize *.jpg
-    [ -f *.png ] && rm *.png
+    rm *.png
+    podofoimg2pdf "$id-$name.pdf" -useimgsize *.jpg
 }
 
 #PDFer
-podofoimg2pdf "$id.pdf" -useimgsize *.* || convert
+podofoimg2pdf "$id-$name.pdf" -useimgsize *.* || convert
 
 #create file to remark nid
-echo "http://nhentai.net/g/$id/" > "$id.no"
-echo $name >> "$id.no"
+# echo "http://nhentai.net/g/$id/" > "$id.no"
+# echo $name >> "$id.no"
 
 #zip it
-zip "$id.zip" *
+# zip "$id.zip" *
 
-#get pwd
-_cwd="$PWD"
+rm *.jpg *.png
+mv *.pdf ../
+
 cd ..
-
-#get top dir
-_top="$PWD"
-cd $_cwd
-
-#move zip top dir
-mv "$id.zip" ..
+rm -r $id
