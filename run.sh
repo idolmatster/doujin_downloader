@@ -30,7 +30,7 @@ if echo "$id" | grep -qE '^[0-9]+$'; then
     mkdir $id
     cd $id
 
-    echo "downloading ${id}"
+    echo "downloading ${name}"
 
     #DL
     for I in `seq 1 $page_count`
@@ -38,8 +38,10 @@ if echo "$id" | grep -qE '^[0-9]+$'; then
         url="https://i.nhentai.net/galleries/$media_id/$I.jpg"
         alturl="https://i.nhentai.net/galleries/$media_id/$I.png"
         wget -q ${url} || wget -q ${alturl}
-        printf "."
+        printf "downloading page $I / $page_count \r"
     done
+    
+    printf "done downloading pages                \n"
 
 else
     # when it's nan
@@ -53,6 +55,7 @@ else
     page_count=$(echo $doujin | jq '.pages')
 
     name=$(echo $doujin | jq -r '.title')
+    name=$(echo $name | sed 's/[<>.\/:"\\|?*]/_/g' | sed 's/|/_/g')
 
     #create "doujin folder" dir
     mkdir $id
