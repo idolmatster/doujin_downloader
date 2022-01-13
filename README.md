@@ -14,8 +14,10 @@ otherwise you will need to install the dependencies by yourself
 
 # open like this (starting version 2.0)
 scriptname nh_id   
-SAMPLE (.net) ./run.sh 12345  
-SAMPLE (.com) ./run.sh some-random-name  
+## SAMPLE (.net) 
+`./run.sh 12345`  
+## SAMPLE (.com)
+`./run.sh some-random-name`  
 
 # batch processing
 create a file called "continuefile"  
